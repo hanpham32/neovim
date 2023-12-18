@@ -88,4 +88,6 @@ return require('packer').startup(function(use)
             require("aerial").setup()
         end,
     })
+
+    use("jose-elias-alvarez/null-ls.nvim")
 end)
