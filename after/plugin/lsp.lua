@@ -52,9 +52,18 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+local diagnostics_active = true
+vim.keymap.set('n', '<leader>d', function()
+    diagnostics_active = not diagnostics_active
+    if diagnostics_active then
+        vim.diagnostic.show()
+    else
+        vim.diagnostic.hide()
+    end
+end)
+
 lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true
 })
-

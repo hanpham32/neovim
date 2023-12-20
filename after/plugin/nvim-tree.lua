@@ -26,7 +26,13 @@ require("nvim-tree").setup({
         group_empty = true,
     },
     filters = {
-        dotfiles = true,
+        dotfiles = false,
+        custom = {'^.git$'}
     },
     disable_netrw = true,
+    git = {
+        enable = true,
+        ignore = false,
+        timeout = 400,
+    },
 })
