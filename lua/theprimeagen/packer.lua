@@ -87,4 +87,8 @@ return require('packer').startup(function(use)
     use("jose-elias-alvarez/null-ls.nvim")
 
     use("mg979/vim-visual-multi")
+
+    -- Flutter
+    use({"neoclide/coc.nvim", branch = "release"})
+    use("dart-lang/dart-vim-plugin")
 end)
