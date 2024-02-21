@@ -7,6 +7,7 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    -- Telescope for fuzzy finding, file browsing, etc.
     -- tag = '0.1.0'
     use {
         'nvim-telescope/telescope.nvim',
@@ -14,20 +15,20 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    use ({"rebelot/kanagawa.nvim"})
+    -- Colorschemes
+    use({ "rebelot/kanagawa.nvim" })
 
+    -- pretty diagnostics, references, telescope results, quickfix and location lists
     use({
         "folke/trouble.nvim",
         config = function()
             require("trouble").setup {
                 icons = false,
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
             }
         end
     })
 
+    -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
         run = function()
@@ -35,48 +36,52 @@ return require('packer').startup(function(use)
             ts_update()
         end, }
 
-    use("nvim-treesitter/playground")
-    use("theprimeagen/harpoon")
+    use("nvim-treesitter/playground")               -- treesitter playground for query development
+    use("theprimeagen/harpoon")                     -- navigation
     use("theprimeagen/refactoring.nvim")
-    use("mbbill/undotree")
-    use("tpope/vim-fugitive")
-    use("nvim-treesitter/nvim-treesitter-context");
+    use("mbbill/undotree")                          -- visualize undo history
+    use("tpope/vim-fugitive")                       -- git integration
+    use("nvim-treesitter/nvim-treesitter-context"); -- show code context
 
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
         requires = {
             -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
+            { 'neovim/nvim-lspconfig' },           -- lsp config
+            { 'williamboman/mason.nvim' },         -- lsp installer
             { 'williamboman/mason-lspconfig.nvim' },
+            { "jose-elias-alvarez/null-ls.nvim" }, -- lsp diagnostics and actions via lua
 
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/nvim-cmp' },         -- The completion plugin
+            { 'hrsh7th/cmp-buffer' },       -- buffer completions
+            { 'hrsh7th/cmp-path' },         -- path completions
+            { 'hrsh7th/cmp-cmdline' },      -- cmdline completions
+            { 'saadparwaiz1/cmp_luasnip' }, -- snippet completions
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lua' },
 
             -- Snippets
-            { 'L3MON4D3/LuaSnip' },
+            { 'L3MON4D3/LuaSnip' }, -- Snippet engine
             { 'rafamadriz/friendly-snippets' },
         }
     }
 
-    use("folke/zen-mode.nvim")
-    use("github/copilot.vim")
-    use("eandrju/cellular-automaton.nvim")
-    use("laytan/cloak.nvim")
+    use("folke/zen-mode.nvim")             -- distraction free coding
+    use("github/copilot.vim")              -- GitHub Copilot
+    use("eandrju/cellular-automaton.nvim") -- cellular automation simulation
+    use("laytan/cloak.nvim")               -- secret management
 
+    -- File explorer
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
-            'nvim-tree/nvim-web-devicons', -- optional
+            'nvim-tree/nvim-web-devicons', -- file icons
         },
     }
 
+    -- Code Outline
     use({
         "stevearc/aerial.nvim",
         config = function()
@@ -84,11 +89,17 @@ return require('packer').startup(function(use)
         end,
     })
 
-    use("jose-elias-alvarez/null-ls.nvim")
-
-    use("mg979/vim-visual-multi")
-
     -- Flutter
-    use({"neoclide/coc.nvim", branch = "release"})
-    use("dart-lang/dart-vim-plugin")
+    use({ "neoclide/coc.nvim", branch = "release" })
+    use("dart-lang/dart-vim-plugin")                                                                        -- Dart language support
+    use { 'akinsho/flutter-tools.nvim', requires = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim', } } -- Flutter development tools
+
+    -- Auto-close pairs
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+
+    use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
+     use { 'onsails/lspkind.nvim' }
 end)
