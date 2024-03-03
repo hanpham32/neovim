@@ -101,5 +101,8 @@ return require('packer').startup(function(use)
     }
 
     use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
-     use { 'onsails/lspkind.nvim' }
+    use { 'onsails/lspkind.nvim' }
+    use { 'windwp/nvim-ts-autotag' }
+    use { 'tpope/vim-surround' }
+    use { 'rafamadriz/friendly-snippets' }
 end)
