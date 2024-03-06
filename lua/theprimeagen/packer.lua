@@ -82,12 +82,7 @@ return require('packer').startup(function(use)
     }
 
     -- Code Outline
-    use({
-        "stevearc/aerial.nvim",
-        config = function()
-            require("aerial").setup()
-        end,
-    })
+    use({ "hedyhli/outline.nvim" })
 
     -- Flutter
     use({ "neoclide/coc.nvim", branch = "release" })
